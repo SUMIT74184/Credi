@@ -1,20 +1,23 @@
 import { Picker } from '@react-native-picker/picker';
 import { useState } from 'react';
 import { Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
+import CongratulationsModal from '../components/CongtulationModal';
 const ShopSetupScreen = ({ navigation }) => {
   const [shopName, setShopName] = useState('');
   const [shopCategory, setShopCategory] = useState('');
   const [shopAddress, setShopAddress] = useState('');
+  const [showCongrats, setShowCongrats] = useState(false);
 
   const handleContinue = () => {
     if (shopName && shopCategory && shopAddress) {
       // save shop details logic here or call an API
       console.log({ shopName, shopCategory, shopAddress });
-      navigation.navigate('Dashboard'); // or next step
+      // navigation.navigate('Dashboard'); // or next step
+      setShowCongrats(true)
     } else {
       alert('Please fill all fields.');
     }
+
   };
 
   return (
@@ -58,7 +61,18 @@ const ShopSetupScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleContinue}>
         <Text style={styles.buttonText}>Save & Continue</Text>
       </TouchableOpacity>
+
+      <CongratulationsModal
+        visible={showCongrats}
+        onClose={() => {
+          setShowCongrats(false);
+          navigation.navigate('Dashboard'); // or next screen
+        }}
+        shopName={shopName}
+      />
+
     </View>
+
   );
 };
 

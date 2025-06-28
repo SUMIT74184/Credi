@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 
 const SignupScreen = ({ navigation }) => {
@@ -9,12 +9,18 @@ const SignupScreen = ({ navigation }) => {
   const phoneInput = useRef(null);
 
   const handleSendOtp = () => {
-    // Validate inputs here if needed
+    const isValid = phoneInput.current?.isValidNumber(phoneNumber);
+    if (!isValid) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+
+    console.log("Phone:", phoneNumber);
     navigation.navigate('OtpVerification');
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
       <Text style={styles.title}>Sign up</Text>
 
       <Text style={styles.label}>Your Name</Text>
@@ -35,11 +41,9 @@ const SignupScreen = ({ navigation }) => {
         onChangeFormattedText={(text) => setPhoneNumber(text)}
         containerStyle={styles.phoneContainer}
         textContainerStyle={styles.phoneTextContainer}
-        textInputStyle={{ color: '#000' }}
-        textInputProps={{
-          placeholder: 'Phone Number',
-          placeholderTextColor: '#888',
-        }}
+        textInputStyle={styles.phoneInputText}
+        withShadow
+        autoFocus={false}
       />
 
       <Text style={styles.label}>Email address</Text>
@@ -65,13 +69,13 @@ const SignupScreen = ({ navigation }) => {
         <View style={styles.dotActive} />
         <View style={styles.dot} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
     padding: 24,
     justifyContent: 'center',
@@ -94,6 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 16,
     fontSize: 16,
+    color: '#000',
   },
   phoneContainer: {
     height: 50,
@@ -105,6 +110,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
+  },
+  phoneInputText: {
+    fontSize: 16,
+    color: '#000',
   },
   terms: {
     textAlign: 'center',
