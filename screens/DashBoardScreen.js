@@ -9,9 +9,9 @@ import TransactionCard from '../components/TransactionCard';
 
 const DashboardScreen = () => {
   const [activeTab, setActiveTab] = useState('Analytics');
-  const [timeRange,setTimeRange]=useState('Monthly')
+  const [timeRange, setTimeRange] = useState('Monthly')
 
-  const navigation=useNavigation();
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -26,23 +26,35 @@ const DashboardScreen = () => {
       <Text style={styles.sectionTitle}>Profit & loss Summary</Text>
 
       {/* Tabs */}
-    <View style={styles.tabs}>
-  {['Analytics', 'Receivable', 'Payable'].map((tab) => (
-    <TouchableOpacity
-      key={tab}
-      style={[styles.tab, activeTab === tab && styles.tabActive]}
-      onPress={() => {
-        if (tab === 'Analytics') {
-          setActiveTab('Analytics');
-        } else {
-          navigation.navigate(tab); // Navigate to Receivable or Payable
-        }
-      }}
-    >
-      <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>{tab}</Text>
-    </TouchableOpacity>
-  ))}
-</View>
+      <View style={styles.tabs}>
+        {['Analytics', 'Receivable', 'Payable'].map((tab) => (
+          <TouchableOpacity
+            key={tab}
+            style={[styles.tab, activeTab === tab && styles.tabActive]}
+            onPress={() => {
+              if (tab === 'Analytics') {
+                setActiveTab('Analytics');
+              } else {
+                navigation.navigate(tab); // Navigate to Receivable or Payable
+              }
+            }}
+          >
+            <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>{tab}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#00008b',
+          padding: 14,
+          borderRadius: 10,
+          marginTop: 20,
+          alignItems: 'center',
+        }}
+        onPress={() => navigation.navigate('Cashbook')}
+      >
+        <Text style={{ color: 'white', fontWeight: 'bold' }}>Go to Cashbook</Text>
+      </TouchableOpacity>
 
 
       {/* Chart */}
@@ -142,10 +154,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  dropdown:{
-    backgroundColor:'#fff',
-    borderRadius:10,
-    margin:16,
+  dropdown: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    margin: 16,
   },
   footerSummary: {
     flexDirection: 'row',

@@ -9,12 +9,6 @@ const SignupScreen = ({ navigation }) => {
   const phoneInput = useRef(null);
 
   const handleSendOtp = () => {
-    const isValid = phoneInput.current?.isValidNumber(phoneNumber);
-    if (!isValid) {
-      alert("Please enter a valid phone number.");
-      return;
-    }
-
     console.log("Phone:", phoneNumber);
     navigation.navigate('OtpVerification');
   };
@@ -98,7 +92,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 16,
     fontSize: 16,
-    color: '#000',
   },
   phoneContainer: {
     height: 50,
@@ -112,8 +105,8 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   phoneInputText: {
-    fontSize: 16,
     color: '#000',
+    fontSize: 16,
   },
   terms: {
     textAlign: 'center',
