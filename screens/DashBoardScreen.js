@@ -16,7 +16,7 @@ const DashboardScreen = () => {
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Image source={require('../assets/images/react-logo.png')} style={styles.shopIcon} />
+        <Image source={require('../assets/images/Shop.png')} style={styles.shopIcon} />
         <Text style={styles.greeting}>
           Hi, <Text style={styles.shopName}>Shri Ram Kirana Store</Text>
         </Text>

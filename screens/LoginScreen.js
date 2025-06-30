@@ -14,9 +14,9 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Credxx Book</Text>
 
-      <Text>Simplyfying payments amplifying credits</Text>
+      <Text style={styles.subheading}>Simplyfying payments amplifying credits</Text>
 
       <InputField placeholder="Name" value={email} onChangeText={setEmail} />
       <InputField
@@ -38,9 +38,10 @@ const LoginScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 24 },
+  container: { flex: 1, justifyContent: 'center', padding: 24,fontFamily:'Inter-Regular' },
   title: { fontSize: 32, marginBottom: 30, textAlign: 'center' },
-  button: {    backgroundColor: '#00008b',
+  button: {
+    backgroundColor: '#00008b',
     paddingVertical: 15,
     borderRadius: 50,
     alignItems: 'center',
@@ -48,6 +49,12 @@ const styles = StyleSheet.create({
   },
   buttonText: { color: '#fff', fontSize: 16 },
   link: { textAlign: 'center', color: '#007AFF' },
+  subheading: {
+    fontSize: 15,
+    marginBottom: 30,
+    textAlign: 'center',
+    fontWeight: 'bold', 
+    }
 });
 
 export default LoginScreen;

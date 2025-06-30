@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
+//phone number international is not working properly
+
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState('');
